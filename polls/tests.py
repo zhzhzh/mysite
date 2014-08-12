@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 
 from polls.models import Poll
 
+
 # Create your tests here.
 class PollMethodTests(TestCase):
 
@@ -41,7 +42,8 @@ def create_poll(question, days):
     positive for polls that have yet to be published).
     """
     return Poll.objects.create(question=question,
-        pub_date=timezone.now() + datetime.timedelta(days=days))
+                               pub_date=timezone.now() + datetime.timedelta(days=days))
+
 
 class PollViewTests(TestCase):
     def test_index_view_with_no_polls(self):
@@ -98,6 +100,7 @@ class PollViewTests(TestCase):
             response.context['latest_poll_list'],
             ['<Poll: Past poll 2.>', '<Poll: Past poll 1.>']
         )
+
 
 class PollIndexDetailTests(TestCase):
     def test_detail_view_with_a_future_poll(self):
